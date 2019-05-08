@@ -1,5 +1,6 @@
 package com.example.mylibrary;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -24,7 +25,7 @@ public interface BookDAO {
     void update(BookModel book);
 
     @Query("SELECT * FROM books_table")
-    List<BookModel> getAllBooks();
+   LiveData<List<BookModel>> getAllBooks();
 
     @Query("SELECT * FROM books_table WHERE bookTitle LIKE :search")
     public List<BookModel> getBookByTitle(String search);
