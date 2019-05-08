@@ -1,9 +1,25 @@
 package com.example.mylibrary;
 
-public class BookModel {
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-    int bookId;
-    String bookTitle, bookAuthor, bookLanguage;
+@Entity
+public class BookModel {
+    @PrimaryKey (autoGenerate = true)
+    private int bookId;
+    @NonNull
+    private String bookTitle;
+    @NonNull
+    private String bookAuthor;
+    private String bookLanguage;
+
+    public BookModel(int bookId, String bookTitle, String bookAuthor, String bookLanguage) {
+        this.bookId = bookId;
+        this.bookTitle = bookTitle;
+        this.bookAuthor = bookAuthor;
+        this.bookLanguage = bookLanguage;
+    }
 
     public int getBookId() {
         return bookId;
