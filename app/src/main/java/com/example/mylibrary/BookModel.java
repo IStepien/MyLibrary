@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "books_table")
 public class BookModel {
     @PrimaryKey (autoGenerate = true)
     private int bookId;
