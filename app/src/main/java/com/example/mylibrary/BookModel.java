@@ -14,12 +14,7 @@ public class BookModel {
     private String bookAuthor;
     private String bookLanguage;
 
-    public BookModel(int bookId, String bookTitle, String bookAuthor, String bookLanguage) {
-        this.bookId = bookId;
-        this.bookTitle = bookTitle;
-        this.bookAuthor = bookAuthor;
-        this.bookLanguage = bookLanguage;
-    }
+
 
     public int getBookId() {
         return bookId;

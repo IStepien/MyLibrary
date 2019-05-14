@@ -19,17 +19,17 @@ public interface BookDAO {
     void deleteBook(BookModel book);
 
     @Query("DELETE FROM books_table")
-    void deleteAll();
+    void deleteAllBooks();
 
     @Update
-    void update(BookModel book);
+    void updateBook(BookModel book);
 
     @Query("SELECT * FROM books_table")
-   LiveData<List<BookModel>> getAllBooks();
+    LiveData<List<BookModel>> getAllBooks();
 
     @Query("SELECT * FROM books_table WHERE bookTitle LIKE :search")
-    public List<BookModel> getBookByTitle(String search);
+    LiveData<List<BookModel>> getBookByTitle(String search);
 
     @Query("SELECT * FROM books_table WHERE bookAuthor LIKE :search")
-    public List<BookModel> getBookByAuthor(String search);
+    LiveData<List<BookModel>> getBookByAuthor(String search);
 }

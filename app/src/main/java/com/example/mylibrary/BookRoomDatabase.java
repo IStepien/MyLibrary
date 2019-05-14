@@ -11,19 +11,23 @@ import androidx.room.RoomDatabase;
 public abstract class BookRoomDatabase extends RoomDatabase {
     public abstract BookDAO bookDAO();
 
-    private static volatile BookRoomDatabase INSTANCE;
+    private static volatile BookRoomDatabase DATABASE_INSTANCE;
 
     static BookRoomDatabase getDatabase(final Context context) {
-        if (INSTANCE == null) {
+        if (DATABASE_INSTANCE == null) {
             synchronized (BookRoomDatabase.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                if (DATABASE_INSTANCE == null) {
+                    DATABASE_INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             BookRoomDatabase.class, "book_database")
                             .build();
                 }
             }
         }
-        return INSTANCE;
+        return DATABASE_INSTANCE;
+    }
+
+    public BookRoomDatabase getDatabaseInstance(){
+        return DATABASE_INSTANCE;
     }
 
 }
