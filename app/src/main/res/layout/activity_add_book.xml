@@ -5,6 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+    android:id="@+id/textView"
+    android:layout_width="206dp"
+    android:layout_height="28dp"
+    android:layout_marginStart="32dp"
+    android:layout_marginTop="32dp"
+    android:layout_marginEnd="32dp"
+    android:layout_marginBottom="24dp"
+    android:text="@string/add_book_heading"
+    app:layout_constraintBottom_toTopOf="@+id/editTextBookTitle"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/editTextBookTitle"
         android:layout_width="wrap_content"
@@ -19,7 +33,8 @@
         app:layout_constraintBottom_toTopOf="@+id/editTextBookAuthor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+         />
 
     <EditText
         android:id="@+id/editTextBookAuthor"
@@ -35,7 +50,8 @@
         app:layout_constraintBottom_toTopOf="@+id/editTextBookLanguage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBookTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextBookTitle"
+        />
 
     <EditText
         android:id="@+id/editTextBookLanguage"
@@ -51,7 +67,8 @@
         app:layout_constraintBottom_toTopOf="@+id/button_add_book"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBookAuthor" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextBookAuthor"
+         />
 
     <Button
         android:id="@+id/button_add_book"
@@ -61,23 +78,26 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="249dp"
+        android:text="@string/add_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBookLanguage"
-        tools:text="@string/add_button" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextBookLanguage" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="206dp"
-        android:layout_height="28dp"
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="24dp"
-        android:text="@string/add_book_heading"
-        app:layout_constraintBottom_toTopOf="@+id/editTextBookTitle"
+        android:layout_marginBottom="144dp"
+        android:text="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/button_add_book" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

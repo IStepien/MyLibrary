@@ -39,9 +39,14 @@ public class AddNewBookActivity extends AppCompatActivity {
         final String bookAuthor = editTextBookAuhor.getText().toString().trim();
         final String bookLanguage = editTextBookLanguage.getText().toString().trim();
 
-        if (bookTitle.isEmpty() || bookAuthor.isEmpty()) {
+        if (bookTitle.isEmpty()) {
             editTextBookTitle.setError("Field required");
             editTextBookTitle.requestFocus();
+            return;
+        }
+        if (bookAuthor.isEmpty()) {
+            editTextBookAuhor.setError("Field required");
+            editTextBookAuhor.requestFocus();
             return;
         }
 
