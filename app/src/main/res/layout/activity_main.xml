@@ -63,16 +63,15 @@
                        />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fabSeeAllBooks"
+            android:id="@+id/fabShowAllBooks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_label="see all books"
-            app:fab_size="mini"
             app:fab_colorNormal="#00600f"
             app:fab_colorPressed="#4c8c4a"
             app:fab_colorRipple="#6abf69"
+            app:fab_label="show all books"
 
-            />
+            app:fab_size="mini" />
 
 
         <com.github.clans.fab.FloatingActionButton
