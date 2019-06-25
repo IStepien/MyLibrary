@@ -19,6 +19,7 @@ public abstract class BookRoomDatabase extends RoomDatabase {
                 if (DATABASE_INSTANCE == null) {
                     DATABASE_INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             BookRoomDatabase.class, "book_database")
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }
