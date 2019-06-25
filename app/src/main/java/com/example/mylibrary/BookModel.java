@@ -14,7 +14,11 @@ public class BookModel {
     private String bookAuthor;
     private String bookLanguage;
 
-
+    public BookModel(@NonNull String bookTitle, @NonNull String bookAuthor, String bookLanguage) {
+        this.bookTitle = bookTitle;
+        this.bookAuthor = bookAuthor;
+        this.bookLanguage = bookLanguage;
+    }
 
     public int getBookId() {
         return bookId;
