@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,7 +16,6 @@ public class AddNewBookActivity extends AppCompatActivity {
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
 
     private EditText editTextBookTitle, editTextBookLanguage, editTextBookAuhor;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,10 +54,8 @@ public class AddNewBookActivity extends AppCompatActivity {
 
             @Override
             protected Void doInBackground(Void... voids) {
-                BookModel newBook = new BookModel();
-                newBook.setBookAuthor(bookAuthor);
-                newBook.setBookTitle(bookTitle);
-                newBook.setBookLanguage(bookLanguage);
+                BookModel newBook = new BookModel(bookTitle, bookAuthor, bookLanguage);
+
 
                 BookRoomDatabase.getDatabase(getApplicationContext()).getDatabaseInstance()
                         .bookDAO()
