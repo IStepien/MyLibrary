@@ -31,7 +31,7 @@ public class BookRepo {
 
     }
     public void delete (BookModel book){
-        new UpdateAsyncTask(mBookDAO).execute(book);
+        new DeleteAsyncTask(mBookDAO).execute(book);
 
     }
     public void deleteAllBooks (){

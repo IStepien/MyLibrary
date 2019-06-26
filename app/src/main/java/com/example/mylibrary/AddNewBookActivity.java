@@ -1,24 +1,22 @@
-package com.example.mylibrary.Activity;
+package com.example.mylibrary;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+
 import android.widget.EditText;
 import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mylibrary.BookModel;
-import com.example.mylibrary.BookRoomDatabase;
-import com.example.mylibrary.R;
-
 public class AddNewBookActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
 
     private EditText editTextBookTitle, editTextBookLanguage, editTextBookAuhor;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
