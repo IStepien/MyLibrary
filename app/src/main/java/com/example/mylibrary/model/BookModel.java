@@ -13,6 +13,11 @@ public class BookModel {
     @NonNull
     private String bookAuthor;
     private String bookLanguage;
+    private boolean alreadyRead;
+    private float rating;
+    private boolean isLend;
+
+
 
     public BookModel(@NonNull String bookTitle, @NonNull String bookAuthor, String bookLanguage) {
         this.bookTitle = bookTitle;

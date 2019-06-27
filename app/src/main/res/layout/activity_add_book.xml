@@ -1,102 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-    android:id="@+id/textView"
-    android:layout_width="206dp"
-    android:layout_height="28dp"
-    android:layout_marginStart="32dp"
-    android:layout_marginTop="32dp"
-    android:layout_marginEnd="32dp"
-    android:layout_marginBottom="24dp"
-    android:text="@string/add_book_heading"
-    app:layout_constraintBottom_toTopOf="@+id/editTextBookTitle"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent"
+    android:padding="10dp">
 
     <EditText
         android:id="@+id/editTextBookTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="34dp"
         android:ems="10"
         android:hint="@string/hint_title"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextBookAuthor"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-         />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextBookAuthor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="13dp"
         android:ems="10"
         android:hint="@string/hint_author"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextBookLanguage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBookTitle"
-        />
+        app:layout_constraintStart_toStartOf="@+id/editTextBookTitle"
+        app:layout_constraintTop_toBottomOf="@+id/editTextBookTitle" />
+
 
     <EditText
         android:id="@+id/editTextBookLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="14dp"
         android:ems="10"
         android:hint="@string/hint_language"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/button_add_book"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBookAuthor"
-         />
+        app:layout_constraintStart_toStartOf="@+id/editTextBookAuthor"
+        app:layout_constraintTop_toBottomOf="@+id/editTextBookAuthor" />
+
 
     <Button
         android:id="@+id/button_add_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="249dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginBottom="36dp"
         android:text="@string/add_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBookLanguage" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/button_cancel"
+    <RatingBar
+        android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
+        android:numStars="3"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        app:layout_constraintStart_toEndOf="@+id/checkBoxIsAlreadyRead"
+        app:layout_constraintTop_toBottomOf="@+id/editTextBookLanguage" />
+
+    <CheckBox
+        android:id="@+id/checkBoxIsAlreadyRead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="9dp"
+        android:text="Read already?"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBoxIsLend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="144dp"
-        android:text="@string/cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_add_book" />
+        android:text="lend?"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxIsAlreadyRead"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxIsAlreadyRead" />
+
+    <EditText
+        android:id="@+id/editTextLender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:ems="10"
+        android:hint="Borrower's name"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxIsLend"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxIsLend"
+        tools:visibility="visible" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
