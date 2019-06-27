@@ -3,6 +3,8 @@ package com.example.mylibrary.activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -11,6 +13,7 @@ import android.widget.RatingBar;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -29,6 +32,8 @@ public class BookDetailsActivity extends AppCompatActivity {
     private EditText editTextBookTitle, editTextBookLanguage, editTextBookAuthor, editTextBorrower;
     private CheckBox checkBoxIsAlreadyRead, checkBoxIsLend;
     private RatingBar ratingBar;
+    private Button addBookButton;
+    ConstraintLayout addBookLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +49,19 @@ public class BookDetailsActivity extends AppCompatActivity {
         checkBoxIsAlreadyRead = findViewById(R.id.checkBoxIsAlreadyRead);
         checkBoxIsLend = findViewById(R.id.checkBoxIsLend);
         ratingBar = findViewById(R.id.ratingBar);
+        addBookButton=findViewById(R.id.button_add_book);
+        addBookButton.setText("edit");
+
+
+        addBookLayout = findViewById(R.id.add_book_layout);
+        for ( int i = 0; i < addBookLayout.getChildCount();  i++ ){
+            if(i!=addBookLayout.indexOfChild(addBookButton)){
+                View view = addBookLayout.getChildAt(i);
+                view.setEnabled(false);
+            }
+
+        }
+
         Intent intent = getIntent();
         bookID = intent.getIntExtra("bookId", -1);
 
@@ -61,6 +79,7 @@ public class BookDetailsActivity extends AppCompatActivity {
                 checkBoxIsAlreadyRead.setChecked(currentBook.isAlreadyRead());
                 checkBoxIsLend.setChecked(currentBook.isLend());
                 ratingBar.setRating(currentBook.getRating());
+
             }
         });
 

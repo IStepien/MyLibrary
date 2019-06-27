@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +25,7 @@ public class AllBooksActivity extends AppCompatActivity {
     private BookViewModel bookViewModel;
     BooksAdapter adapter;
     RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,10 +57,12 @@ public class AllBooksActivity extends AppCompatActivity {
         int clickedItemId = item.getOrder();
         adapter.getBookAt(clickedItemId);
 
+
         switch (item.getItemId()) {
             case (R.id.detailsBook):
                 Intent intent = new Intent(getApplicationContext(), BookDetailsActivity.class);
                 intent.putExtra("bookId", clickedItemId);
+
                 startActivity(intent);
                 break;
             case (R.id.deleteBook):
