@@ -3,7 +3,10 @@ package com.example.mylibrary;
 import android.app.Application;
 import android.os.AsyncTask;
 
+
 import androidx.lifecycle.LiveData;
+
+import com.example.mylibrary.model.BookModel;
 
 import java.util.List;
 
@@ -26,15 +29,18 @@ public class BookRepo {
     public void insert(BookModel book) {
         new InsertAsyncTask(mBookDAO).execute(book);
     }
-    public void update(BookModel book){
+
+    public void update(BookModel book) {
         new UpdateAsyncTask(mBookDAO).execute(book);
 
     }
-    public void delete (BookModel book){
+
+    public void delete(BookModel book) {
         new DeleteAsyncTask(mBookDAO).execute(book);
 
     }
-    public void deleteAllBooks (){
+
+    public void deleteAllBooks() {
         new DeleteAllAsyncTask(mBookDAO).execute();
 
     }
@@ -43,7 +49,7 @@ public class BookRepo {
 
         private BookDAO mAsyncTaskDao;
 
-       private  InsertAsyncTask(BookDAO dao) {
+        private InsertAsyncTask(BookDAO dao) {
             this.mAsyncTaskDao = dao;
         }
 
@@ -58,7 +64,7 @@ public class BookRepo {
 
         private BookDAO mAsyncTaskDao;
 
-        private  UpdateAsyncTask(BookDAO dao) {
+        private UpdateAsyncTask(BookDAO dao) {
             this.mAsyncTaskDao = dao;
         }
 
@@ -73,7 +79,7 @@ public class BookRepo {
 
         private BookDAO mAsyncTaskDao;
 
-        private  DeleteAsyncTask(BookDAO dao) {
+        private DeleteAsyncTask(BookDAO dao) {
             this.mAsyncTaskDao = dao;
         }
 
@@ -83,11 +89,12 @@ public class BookRepo {
             return null;
         }
     }
+
     private static class DeleteAllAsyncTask extends AsyncTask<Void, Void, Void> {
 
         private BookDAO mAsyncTaskDao;
 
-        private  DeleteAllAsyncTask(BookDAO dao) {
+        private DeleteAllAsyncTask(BookDAO dao) {
             this.mAsyncTaskDao = dao;
         }
 

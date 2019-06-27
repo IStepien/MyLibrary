@@ -9,14 +9,16 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.mylibrary.model.BookModel;
 
-@Database(entities = {BookModel.class}, version = 1)
+
+@Database(entities = {BookModel.class}, version = 2)
 public abstract class BookRoomDatabase extends RoomDatabase {
     public abstract BookDAO bookDAO();
 
     private static volatile BookRoomDatabase DATABASE_INSTANCE;
 
-    static BookRoomDatabase getDatabase(final Context context) {
+    public static BookRoomDatabase getDatabase(final Context context) {
         if (DATABASE_INSTANCE == null) {
             synchronized (BookRoomDatabase.class) {
                 if (DATABASE_INSTANCE == null) {
@@ -52,7 +54,10 @@ public abstract class BookRoomDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            bookDAO.insertBook(new BookModel("Example title", "author", "language"));
+            BookModel bookModel = new BookModel();
+            bookModel.setBookTitle("Example title");
+            bookModel.setBookAuthor("Author");
+            bookDAO.insertBook(bookModel);
 
             return null;
         }

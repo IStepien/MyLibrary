@@ -1,4 +1,4 @@
-package com.example.mylibrary;
+package com.example.mylibrary.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -7,23 +7,54 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "books_table")
 public class BookModel {
     @PrimaryKey (autoGenerate = true)
+    @NonNull
     private int bookId;
     @NonNull
     private String bookTitle;
     @NonNull
     private String bookAuthor;
     private String bookLanguage;
-    private boolean alreadyRead;
+    private boolean isAlreadyRead;
     private float rating;
     private boolean isLend;
+    private String borrower;
 
 
 
-    public BookModel(@NonNull String bookTitle, @NonNull String bookAuthor, String bookLanguage) {
-        this.bookTitle = bookTitle;
-        this.bookAuthor = bookAuthor;
-        this.bookLanguage = bookLanguage;
+    public boolean isAlreadyRead() {
+        return isAlreadyRead;
     }
+
+    public void setAlreadyRead(boolean alreadyRead) {
+        isAlreadyRead = alreadyRead;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public boolean isLend() {
+        return isLend;
+    }
+
+    public void setLend(boolean lend) {
+        isLend = lend;
+    }
+
+    public String getBorrower() {
+        return borrower;
+    }
+
+    public void setBorrower(String borrower) {
+        this.borrower = borrower;
+    }
+
+
+
 
     public int getBookId() {
         return bookId;

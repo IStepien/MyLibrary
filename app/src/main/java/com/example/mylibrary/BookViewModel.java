@@ -7,16 +7,20 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.mylibrary.model.BookModel;
+
 import java.util.List;
 
 public class BookViewModel extends AndroidViewModel {
     private BookRepo mRepo;
     private LiveData<List<BookModel>> mAllBooks;
 
+
     public BookViewModel(@NonNull Application application) {
         super(application);
         mRepo = new BookRepo(application);
         mAllBooks = mRepo.getAllBooks();
+
     }
 
     public LiveData<List<BookModel>> getAllBooks() {
@@ -29,17 +33,15 @@ public class BookViewModel extends AndroidViewModel {
 
     public void update(BookModel book) {
         mRepo.update(book);
-
     }
 
     public void delete(BookModel book) {
         mRepo.delete(book);
-
     }
+
 
     public void deleteAllBooks() {
         mRepo.deleteAllBooks();
-
     }
 
 }

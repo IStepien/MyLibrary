@@ -1,4 +1,4 @@
-package com.example.mylibrary;
+package com.example.mylibrary.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.View;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.mylibrary.R;
 import com.github.clans.fab.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {

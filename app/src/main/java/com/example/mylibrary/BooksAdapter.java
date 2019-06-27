@@ -2,7 +2,6 @@ package com.example.mylibrary;
 
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -10,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mylibrary.model.BookModel;
 
 import java.util.ArrayList;
 import java.util.List;
