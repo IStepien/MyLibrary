@@ -1,21 +1,29 @@
-package com.example.mylibrary;
+package com.example.mylibrary.activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mylibrary.model.BookModel;
+import com.example.mylibrary.BookRoomDatabase;
+import com.example.mylibrary.R;
+
 public class AddNewBookActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.example.android.wordlistsql.REPLY";
 
-    private EditText editTextBookTitle, editTextBookLanguage, editTextBookAuhor;
+    private EditText editTextBookTitle, editTextBookLanguage, editTextBookAuthor, editTextBorrower;
+    private CheckBox checkBoxIsAlreadyRead, checkBoxIsLend;
+    private RatingBar ratingBar;
 
 
     @Override
@@ -25,7 +33,12 @@ public class AddNewBookActivity extends AppCompatActivity {
 
         editTextBookTitle = findViewById(R.id.editTextBookTitle);
         editTextBookLanguage = findViewById(R.id.editTextBookLanguage);
-        editTextBookAuhor = findViewById(R.id.editTextBookAuthor);
+        editTextBookAuthor = findViewById(R.id.editTextBookAuthor);
+
+        editTextBorrower = findViewById(R.id.editTextBorrower);
+        checkBoxIsAlreadyRead = findViewById(R.id.checkBoxIsAlreadyRead);
+        checkBoxIsLend = findViewById(R.id.checkBoxIsLend);
+        ratingBar = findViewById(R.id.ratingBar);
 
         findViewById(R.id.button_add_book).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,8 +50,12 @@ public class AddNewBookActivity extends AppCompatActivity {
 
     private void saveBook() {
         final String bookTitle = editTextBookTitle.getText().toString().trim();
-        final String bookAuthor = editTextBookAuhor.getText().toString().trim();
+        final String bookAuthor = editTextBookAuthor.getText().toString().trim();
         final String bookLanguage = editTextBookLanguage.getText().toString().trim();
+        final String borrower = editTextBorrower.getText().toString().trim();
+        final boolean isAlreadyRead = checkBoxIsAlreadyRead.isChecked();
+        final float rating = ratingBar.getRating();
+        final boolean isLend = checkBoxIsLend.isChecked();
 
         if (bookTitle.isEmpty()) {
             editTextBookTitle.setError("Field required");
@@ -46,8 +63,8 @@ public class AddNewBookActivity extends AppCompatActivity {
             return;
         }
         if (bookAuthor.isEmpty()) {
-            editTextBookAuhor.setError("Field required");
-            editTextBookAuhor.requestFocus();
+            editTextBookAuthor.setError("Field required");
+            editTextBookAuthor.requestFocus();
             return;
         }
 
@@ -55,7 +72,14 @@ public class AddNewBookActivity extends AppCompatActivity {
 
             @Override
             protected Void doInBackground(Void... voids) {
-                BookModel newBook = new BookModel(bookTitle, bookAuthor, bookLanguage);
+                BookModel newBook = new BookModel();
+                newBook.setBookAuthor(bookAuthor);
+                newBook.setBookLanguage(bookLanguage);
+                newBook.setBookTitle(bookTitle);
+                newBook.setBorrower(borrower);
+                newBook.setAlreadyRead(isAlreadyRead);
+                newBook.setLend(isLend);
+                newBook.setRating(rating);
 
 
                 BookRoomDatabase.getDatabase(getApplicationContext()).getDatabaseInstance()
