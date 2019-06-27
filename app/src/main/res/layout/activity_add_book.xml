@@ -72,7 +72,8 @@
         android:layout_marginBottom="9dp"
         android:text="Read already?"
         app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <CheckBox
         android:id="@+id/checkBoxIsLend"
@@ -92,8 +93,7 @@
         android:hint="Borrower's name"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/checkBoxIsLend"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxIsLend"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxIsLend" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

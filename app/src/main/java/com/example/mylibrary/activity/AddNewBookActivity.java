@@ -39,6 +39,22 @@ public class AddNewBookActivity extends AppCompatActivity {
         checkBoxIsAlreadyRead = findViewById(R.id.checkBoxIsAlreadyRead);
         checkBoxIsLend = findViewById(R.id.checkBoxIsLend);
         ratingBar = findViewById(R.id.ratingBar);
+        ratingBar.setVisibility(View.INVISIBLE);
+        editTextBorrower.setVisibility(View.INVISIBLE);
+
+        checkBoxIsAlreadyRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setVisibility(ratingBar);
+            }
+        });
+        checkBoxIsLend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setVisibility(editTextBorrower);
+            }
+        });
+
 
         findViewById(R.id.button_add_book).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +84,7 @@ public class AddNewBookActivity extends AppCompatActivity {
             return;
         }
 
+
         class SaveBook extends AsyncTask<Void, Void, Void> {
 
             @Override
@@ -76,11 +93,14 @@ public class AddNewBookActivity extends AppCompatActivity {
                 newBook.setBookAuthor(bookAuthor);
                 newBook.setBookLanguage(bookLanguage);
                 newBook.setBookTitle(bookTitle);
-                newBook.setBorrower(borrower);
+
                 newBook.setAlreadyRead(isAlreadyRead);
-                newBook.setLend(isLend);
+
                 newBook.setRating(rating);
 
+                newBook.setLend(isLend);
+
+                newBook.setBorrower(borrower);
 
                 BookRoomDatabase.getDatabase(getApplicationContext()).getDatabaseInstance()
                         .bookDAO()
@@ -101,4 +121,11 @@ public class AddNewBookActivity extends AppCompatActivity {
         saveBook.execute();
     }
 
+    public void setVisibility(View view) {
+        if (view.getVisibility() == View.VISIBLE) {
+            view.setVisibility(View.INVISIBLE);
+        } else {
+            view.setVisibility(View.VISIBLE);
+        }
+    }
 }
