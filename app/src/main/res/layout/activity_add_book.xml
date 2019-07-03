@@ -52,6 +52,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/button_edit_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="145dp"
+        android:layout_marginBottom="36dp"
+        android:text="@string/edit"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
@@ -75,11 +86,11 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
-        android:id="@+id/checkBoxIsLend"
+        android:id="@+id/checkBoxIsLent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="lend?"
+        android:text="lent?"
         app:layout_constraintStart_toStartOf="@+id/checkBoxIsAlreadyRead"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxIsAlreadyRead" />
 
@@ -91,8 +102,8 @@
         android:ems="10"
         android:hint="Borrower's name"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxIsLend"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxIsLend" />
+        app:layout_constraintStart_toStartOf="@+id/checkBoxIsLent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxIsLent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,4 +8,5 @@
     <string name="add_button">Add</string>
     <string name="add_book_heading">Add a new book</string>
     <string name="cancel">Cancel</string>
+    <string name="edit">Edit</string>
 </resources>

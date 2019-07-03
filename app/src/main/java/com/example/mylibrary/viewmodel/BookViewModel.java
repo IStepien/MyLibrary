@@ -1,14 +1,12 @@
-package com.example.mylibrary;
+package com.example.mylibrary.viewmodel;
 
 
 import android.app.Application;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-
 import com.example.mylibrary.model.BookModel;
-
+import com.example.mylibrary.repo.BookRepo;
 import java.util.List;
 
 public class BookViewModel extends AndroidViewModel {
@@ -25,6 +23,10 @@ public class BookViewModel extends AndroidViewModel {
 
     public LiveData<List<BookModel>> getAllBooks() {
         return mAllBooks;
+    }
+
+    public LiveData<BookModel> getBookById(int id) {
+        return mRepo.getBookById(id);
     }
 
     public void insert(BookModel book) {

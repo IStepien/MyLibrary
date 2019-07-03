@@ -1,24 +1,20 @@
-package com.example.mylibrary;
+package com.example.mylibrary.adapter;
 
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.example.mylibrary.R;
 import com.example.mylibrary.model.BookModel;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BooksViewHolder> {
 
     private List<BookModel> booksList = new ArrayList<>();
-
 
     @NonNull
     @Override
@@ -44,6 +40,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BooksViewHol
     public void setBooksList(List<BookModel> booksList) {
         this.booksList = booksList;
         notifyDataSetChanged();
+
     }
 
     public BookModel getBookAt(int position) {

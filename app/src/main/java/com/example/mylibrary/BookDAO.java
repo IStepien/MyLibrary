@@ -14,7 +14,7 @@ import java.util.List;
 
 @Dao
 public interface BookDAO {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     void insertBook(BookModel book);
 
     @Delete
@@ -28,6 +28,9 @@ public interface BookDAO {
 
     @Query("SELECT * FROM books_table")
     LiveData<List<BookModel>> getAllBooks();
+
+    @Query("SELECT * FROM books_table WHERE bookId=:bookId")
+    LiveData<BookModel> getBookById(int bookId);
 
     @Query("SELECT * FROM books_table WHERE bookTitle LIKE :search")
     LiveData<List<BookModel>> getBookByTitle(String search);

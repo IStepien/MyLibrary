@@ -1,13 +1,11 @@
-package com.example.mylibrary;
+package com.example.mylibrary.repo;
 
 import android.app.Application;
 import android.os.AsyncTask;
-
-
 import androidx.lifecycle.LiveData;
-
+import com.example.mylibrary.BookDAO;
+import com.example.mylibrary.BookRoomDatabase;
 import com.example.mylibrary.model.BookModel;
-
 import java.util.List;
 
 public class BookRepo {
@@ -24,6 +22,9 @@ public class BookRepo {
     public LiveData<List<BookModel>> getAllBooks() {
 
         return mAllBooks;
+    }
+    public LiveData<BookModel> getBookById(int id){
+        return  mBookDAO.getBookById(id);
     }
 
     public void insert(BookModel book) {
@@ -64,7 +65,7 @@ public class BookRepo {
 
         private BookDAO mAsyncTaskDao;
 
-        private UpdateAsyncTask(BookDAO dao) {
+        UpdateAsyncTask(BookDAO dao) {
             this.mAsyncTaskDao = dao;
         }
 

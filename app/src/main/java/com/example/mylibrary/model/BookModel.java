@@ -5,10 +5,10 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "books_table")
-public class BookModel {
+public class BookModel  {
     @PrimaryKey (autoGenerate = true)
     @NonNull
-    private int bookId;
+    private Integer bookId;
     @NonNull
     private String bookTitle;
     @NonNull
@@ -16,9 +16,8 @@ public class BookModel {
     private String bookLanguage;
     private boolean isAlreadyRead;
     private float rating;
-    private boolean isLend;
+    private boolean isLent;
     private String borrower;
-
 
 
     public boolean isAlreadyRead() {
@@ -37,12 +36,12 @@ public class BookModel {
         this.rating = rating;
     }
 
-    public boolean isLend() {
-        return isLend;
+    public boolean isLent() {
+        return isLent;
     }
 
-    public void setLend(boolean lend) {
-        isLend = lend;
+    public void setLent(boolean lent) {
+        isLent = lent;
     }
 
     public String getBorrower() {
@@ -56,11 +55,11 @@ public class BookModel {
 
 
 
-    public int getBookId() {
+    public Integer getBookId() {
         return bookId;
     }
 
-    public void setBookId(int bookId) {
+    public void setBookId(Integer bookId) {
         this.bookId = bookId;
     }
 
@@ -87,4 +86,6 @@ public class BookModel {
     public void setBookLanguage(String bookLanguage) {
         this.bookLanguage = bookLanguage;
     }
+
+
 }
