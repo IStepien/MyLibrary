@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
         FloatingActionButton  fabAddNewBook = findViewById(R.id.fabAddNewBook);
         fabAddNewBook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
     }
 

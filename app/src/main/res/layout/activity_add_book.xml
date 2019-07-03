@@ -4,14 +4,16 @@
     android:id="@+id/add_book_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp">
+
+    >
+
 
     <EditText
         android:id="@+id/editTextBookTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="36dp"
         android:ems="10"
         android:hint="@string/hint_title"
         android:inputType="textPersonName"
@@ -44,24 +46,38 @@
 
     <Button
         android:id="@+id/button_add_book"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="145dp"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_width="59dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="36dp"
+        android:gravity="center"
         android:text="@string/add_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button_edit_book"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="145dp"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_width="59dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="36dp"
+        android:gravity="center"
         android:text="@string/edit"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <RatingBar
         android:id="@+id/ratingBar"
@@ -90,7 +106,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="lent?"
+        android:text="Lent?"
         app:layout_constraintStart_toStartOf="@+id/checkBoxIsAlreadyRead"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxIsAlreadyRead" />
 

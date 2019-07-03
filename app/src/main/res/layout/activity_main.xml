@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:orientation="vertical">
+
 
     <TextView
-        android:id="@string/welcomeMessage"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="266dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="247dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:padding="16sp"
-        android:text="@string/welcomeMessage" />
+        android:text="@string/welcomeMessage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/social_floating_menu"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
         android:layout_marginBottom="11dp"
-       app:menu_animationDelayPerItem="55"
+        app:menu_animationDelayPerItem="55"
         app:menu_backgroundColor="@android:color/transparent"
         app:menu_buttonSpacing="5dp"
         app:menu_colorNormal="#00600f"
@@ -30,6 +42,7 @@
         app:menu_colorRipple="#6abf69"
         app:menu_fab_size="normal"
         app:menu_icon="@drawable/fab_add"
+        app:menu_labels_colorNormal="#FFFFFF"
         app:menu_labels_cornerRadius="10dp"
         app:menu_labels_ellipsize="none"
         app:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
@@ -42,25 +55,22 @@
         app:menu_labels_singleLine="false"
         app:menu_labels_textColor="#000"
         app:menu_labels_textSize="15sp"
-        app:menu_labels_colorNormal="#FFFFFF"
         app:menu_openDirection="up"
         app:menu_shadowColor="#66aff198"
         app:menu_shadowRadius="0dp"
         app:menu_shadowXOffset="1dp"
         app:menu_shadowYOffset="4dp"
-        app:menu_showShadow="true"
-    >
+        app:menu_showShadow="true">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fabAddNewBook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_label="add new book"
-            app:fab_size="mini"
             app:fab_colorNormal="#00600f"
             app:fab_colorPressed="#4c8c4a"
             app:fab_colorRipple="#6abf69"
-                       />
+            app:fab_label="add new book"
+            app:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fabShowAllBooks"
@@ -69,7 +79,7 @@
             app:fab_colorNormal="#00600f"
             app:fab_colorPressed="#4c8c4a"
             app:fab_colorRipple="#6abf69"
-            app:fab_label="show all books"
+            app:fab_label="show my books"
 
             app:fab_size="mini" />
 
@@ -78,12 +88,11 @@
             android:id="@+id/fab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_label="item 3"
-            app:fab_size="mini"
             app:fab_colorNormal="#00600f"
             app:fab_colorPressed="#4c8c4a"
             app:fab_colorRipple="#6abf69"
-            />
+            app:fab_label="show my wishlist"
+            app:fab_size="mini" />
     </com.github.clans.fab.FloatingActionMenu>
 
 </RelativeLayout>
