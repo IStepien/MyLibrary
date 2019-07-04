@@ -32,13 +32,12 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextBookTitle" />
 
 
-    <EditText
-        android:id="@+id/editTextBookLanguage"
+    <Spinner
+        android:id="@+id/spinnerLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:ems="10"
-        android:hint="@string/hint_language"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/editTextBookAuthor"
         app:layout_constraintTop_toBottomOf="@+id/editTextBookAuthor" />
@@ -89,7 +88,7 @@
         android:scaleX="0.7"
         android:scaleY="0.7"
         app:layout_constraintStart_toEndOf="@+id/checkBoxIsAlreadyRead"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBookLanguage" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerLanguage" />
 
     <CheckBox
         android:id="@+id/checkBoxIsAlreadyRead"

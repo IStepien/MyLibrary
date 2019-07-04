@@ -4,10 +4,12 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,12 +27,13 @@ import java.util.List;
 public class BookDetailsActivity extends AppCompatActivity {
 
 
-    private EditText editTextBookTitle, editTextBookLanguage, editTextBookAuthor, editTextBorrower;
+    private EditText editTextBookTitle,  editTextBookAuthor, editTextBorrower;
     private CheckBox checkBoxIsAlreadyRead, checkBoxIsLent;
     private RatingBar ratingBar;
     private Button editBookButton, addBookButton;
     private ConstraintLayout addBookLayout;
     private BookModel currentBook;
+    private Spinner spinnerLanguage;
 
 
     @Override
@@ -40,7 +43,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_book);
 
         editTextBookTitle = findViewById(R.id.editTextBookTitle);
-        editTextBookLanguage = findViewById(R.id.editTextBookLanguage);
+        spinnerLanguage = findViewById(R.id.spinnerLanguage);
         editTextBookAuthor = findViewById(R.id.editTextBookAuthor);
         editTextBorrower = findViewById(R.id.editTextBorrower);
         checkBoxIsAlreadyRead = findViewById(R.id.checkBoxIsAlreadyRead);
@@ -59,7 +62,9 @@ public class BookDetailsActivity extends AppCompatActivity {
             public void onChanged(@Nullable List<BookModel> booksList) {
                 currentBook = booksList.get(clickedItemId);
                 editTextBookTitle.setText(currentBook.getBookTitle());
-                editTextBookLanguage.setText(currentBook.getBookLanguage());
+                ArrayAdapter<CharSequence> adapter =  ArrayAdapter.createFromResource(getApplicationContext(), R.array.languages_array, android.R.layout.simple_spinner_dropdown_item);
+                spinnerLanguage.setAdapter(adapter);
+                spinnerLanguage.setSelection(adapter.getPosition(currentBook.getBookLanguage()));
                 editTextBookAuthor.setText(currentBook.getBookAuthor());
                 editTextBorrower.setText(currentBook.getBorrower());
                 checkBoxIsAlreadyRead.setChecked(currentBook.isAlreadyRead());
@@ -121,7 +126,7 @@ public class BookDetailsActivity extends AppCompatActivity {
                         Intent resultIntent = new Intent();
                         resultIntent.putExtra("bookId", bookId);
                         resultIntent.putExtra("updatedTitle", editTextBookTitle.getText().toString());
-                        resultIntent.putExtra("updatedLanguage", editTextBookLanguage.getText().toString());
+                        resultIntent.putExtra("updatedLanguage", spinnerLanguage.getSelectedItem().toString());
                         resultIntent.putExtra("updatedAuthor", editTextBookAuthor.getText().toString());
                         resultIntent.putExtra("updatedBorrower", editTextBorrower.getText().toString());
                         resultIntent.putExtra("updatedIsAlreadyRead", checkBoxIsAlreadyRead.isChecked());

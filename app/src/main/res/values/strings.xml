@@ -9,4 +9,13 @@
     <string name="add_book_heading">Add a new book</string>
     <string name="cancel">Cancel</string>
     <string name="edit">Edit</string>
+    <string-array name="languages_array">
+        <item>Select language</item>
+        <item>PL</item>
+        <item>DE</item>
+        <item>SE</item>
+        <item>FI</item>
+        <item>EN</item>
+        <item>other</item>
+    </string-array>
 </resources>
