@@ -26,9 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.AddNewBookActivity"></activity>
         <activity android:name=".activity.AllBooksActivity"></activity>
-        <activity android:name=".activity.BookDetailsActivity" />
+        <activity android:name=".activity.AddEditBookActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

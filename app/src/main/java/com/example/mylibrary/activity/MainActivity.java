@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         fabAddNewBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AddNewBookActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AddEditBookActivity.class);
                 startActivity(intent);
             }
         });

@@ -2,7 +2,6 @@ package com.example.mylibrary.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,7 +57,7 @@ public class AllBooksActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case (R.id.detailsBook):
-                Intent intent = new Intent(AllBooksActivity.this, BookDetailsActivity.class);
+                Intent intent = new Intent(AllBooksActivity.this, AddEditBookActivity.class);
                 intent.putExtra("clickedItemId", clickedItemId);
                 intent.putExtra("bookId", bookId);
                 startActivityForResult(intent, EDIT_BOOK_REQUEST);
@@ -86,6 +85,7 @@ public class AllBooksActivity extends AppCompatActivity {
             updatedBook.setAlreadyRead( data.getBooleanExtra("updatedIsAlreadyRead",false));
             updatedBook.setLent(data.getBooleanExtra("updatedIsLent",false));
             updatedBook.setRating(data.getFloatExtra("updatedRating", 0));
+            updatedBook.setImageURI(data.getStringExtra("updatedImageURI"));
             bookViewModel.update(updatedBook);
 
         }
