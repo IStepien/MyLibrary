@@ -13,21 +13,25 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.FileProvider;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+
 import com.example.mylibrary.BookRoomDatabase;
 import com.example.mylibrary.R;
 import com.example.mylibrary.model.BookModel;
 import com.example.mylibrary.viewmodel.BookViewModel;
 import com.squareup.picasso.Picasso;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -47,12 +51,14 @@ public class AddEditBookActivity extends AppCompatActivity {
     private Button editBookButton, addBookButton;
     private ConstraintLayout addEditBookLayout;
     private BookModel currentBook;
+    private ImageButton deleteImageButton;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_book);
+
 
         editTextBookTitle = findViewById(R.id.editTextBookTitle);
         spinnerLanguage = findViewById(R.id.spinnerLanguage);
@@ -65,6 +71,7 @@ public class AddEditBookActivity extends AppCompatActivity {
         addBookButton = findViewById(R.id.button_add_book);
         editBookButton = findViewById(R.id.button_edit_book);
         addEditBookLayout = findViewById(R.id.add_book_layout);
+        deleteImageButton = findViewById(R.id.imageButtonDelete);
 
         Intent intent = getIntent();
 
@@ -113,14 +120,22 @@ public class AddEditBookActivity extends AppCompatActivity {
                     freezeLayout(addEditBookLayout);
 
                     setVisibility(editBookButton);
+                    setVisibility(deleteImageButton);
 
-                   editBookButton.setOnClickListener(new View.OnClickListener() {
-                      @Override
+                    editBookButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
                         public void onClick(View v) {
-                          unFreezeLayout(addEditBookLayout);
-                                    editBookButton.setVisibility(View.INVISIBLE);
-                                }
-                });
+                            unFreezeLayout(addEditBookLayout);
+                            editBookButton.setVisibility(View.INVISIBLE);
+                        }
+                    });
+                    deleteImageButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            currentBook.setImageURI(null);
+                            imageView.setImageResource(android.R.color.transparent);
+                        }
+                    });
 
                     addBookButton.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -306,6 +321,7 @@ public class AddEditBookActivity extends AppCompatActivity {
             }
         }
     }
+
     public void unFreezeLayout(ViewGroup layout) {
         for (int i = 0; i < layout.getChildCount(); i++) {
             if (i != layout.indexOfChild(editBookButton)) {
