@@ -2,12 +2,17 @@ package com.example.mylibrary.activity;
 
 import android.content.Intent;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 
@@ -20,21 +25,24 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.mylibrary.R;
 import com.example.mylibrary.model.BookModel;
 import com.example.mylibrary.viewmodel.BookViewModel;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 
 public class BookDetailsActivity extends AppCompatActivity {
 
 
-    private EditText editTextBookTitle,  editTextBookAuthor, editTextBorrower;
+    private EditText editTextBookTitle, editTextBookAuthor, editTextBorrower;
     private CheckBox checkBoxIsAlreadyRead, checkBoxIsLent;
     private RatingBar ratingBar;
     private Button editBookButton, addBookButton;
     private ConstraintLayout addBookLayout;
     private BookModel currentBook;
     private Spinner spinnerLanguage;
-
+    private ImageView imageView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +59,7 @@ public class BookDetailsActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar);
         addBookButton = findViewById(R.id.button_add_book);
         editBookButton = findViewById(R.id.button_edit_book);
-
+        imageView = findViewById(R.id.imageView);
 
         Intent intent = getIntent();
         final int clickedItemId = intent.getIntExtra("clickedItemId", -1);
@@ -62,7 +70,7 @@ public class BookDetailsActivity extends AppCompatActivity {
             public void onChanged(@Nullable List<BookModel> booksList) {
                 currentBook = booksList.get(clickedItemId);
                 editTextBookTitle.setText(currentBook.getBookTitle());
-                ArrayAdapter<CharSequence> adapter =  ArrayAdapter.createFromResource(getApplicationContext(), R.array.languages_array, android.R.layout.simple_spinner_dropdown_item);
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.languages_array, android.R.layout.simple_spinner_dropdown_item);
                 spinnerLanguage.setAdapter(adapter);
                 spinnerLanguage.setSelection(adapter.getPosition(currentBook.getBookLanguage()));
                 editTextBookAuthor.setText(currentBook.getBookAuthor());
@@ -70,7 +78,11 @@ public class BookDetailsActivity extends AppCompatActivity {
                 checkBoxIsAlreadyRead.setChecked(currentBook.isAlreadyRead());
                 checkBoxIsLent.setChecked(currentBook.isLent());
                 ratingBar.setRating(currentBook.getRating());
+                if (currentBook.getImageURI() != null) {
+                    imageView.setTag(currentBook.getImageURI());
 
+                    Picasso.get().load(Uri.parse(currentBook.getImageURI())).into(imageView);
+                }
                 if (!currentBook.isLent()) {
                     setVisibility(editTextBorrower);
                 }

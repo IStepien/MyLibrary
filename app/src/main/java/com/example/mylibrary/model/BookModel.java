@@ -1,12 +1,15 @@
 package com.example.mylibrary.model;
 
+import android.graphics.Bitmap;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "books_table")
-public class BookModel  {
-    @PrimaryKey (autoGenerate = true)
+public class BookModel {
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     private Integer bookId;
     @NonNull
@@ -18,6 +21,7 @@ public class BookModel  {
     private float rating;
     private boolean isLent;
     private String borrower;
+    private String imageURI;
 
 
     public boolean isAlreadyRead() {
@@ -52,9 +56,6 @@ public class BookModel  {
         this.borrower = borrower;
     }
 
-
-
-
     public Integer getBookId() {
         return bookId;
     }
@@ -85,6 +86,14 @@ public class BookModel  {
 
     public void setBookLanguage(String bookLanguage) {
         this.bookLanguage = bookLanguage;
+    }
+
+    public String getImageURI() {
+        return imageURI;
+    }
+
+    public void setImageURI(String imageURI) {
+        this.imageURI = imageURI;
     }
 
 
