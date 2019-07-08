@@ -2,6 +2,8 @@ package com.example.mylibrary.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -95,7 +97,9 @@ public class AddEditBookActivity extends AppCompatActivity {
                     if (currentBook.getImageURI() != null) {
                         imageView.setTag(currentBook.getImageURI());
 
-                        Picasso.get().load(Uri.parse(currentBook.getImageURI())).into(imageView);
+                      Picasso.get().load(Uri.parse(currentBook.getImageURI())).resize(110,120).into(imageView);
+                        Picasso.get().setLoggingEnabled(true);
+
                     }
                     if (!currentBook.isLent()) {
                         setVisibility(editTextBorrower);
