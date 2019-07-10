@@ -18,4 +18,5 @@
         <item>EN</item>
         <item>other</item>
     </string-array>
+    <string name="chooser_title">Make a photo with</string>
 </resources>

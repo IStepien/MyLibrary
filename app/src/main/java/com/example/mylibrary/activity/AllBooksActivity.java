@@ -73,7 +73,6 @@ public class AllBooksActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
         if (requestCode == EDIT_BOOK_REQUEST && resultCode == RESULT_OK) {
             BookModel updatedBook = new BookModel();
             Integer id = data.getIntExtra("bookId", -1);
@@ -87,9 +86,7 @@ public class AllBooksActivity extends AppCompatActivity {
             updatedBook.setRating(data.getFloatExtra("updatedRating", 0));
             updatedBook.setImageURI(data.getStringExtra("updatedImageURI"));
             bookViewModel.update(updatedBook);
-
         }
-
 
     }
 }

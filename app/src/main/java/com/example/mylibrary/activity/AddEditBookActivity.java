@@ -273,7 +273,7 @@ public class AddEditBookActivity extends AppCompatActivity {
             if (imageFile != null) {
                 Uri imageURI = FileProvider.getUriForFile(this, "com.example.mylibrary.provider", imageFile);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, imageURI);
-                startActivityForResult(intent, REQUEST_TAKE_PHOTO);
+                startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.chooser_title)), REQUEST_TAKE_PHOTO);
             }
         }
 
