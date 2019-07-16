@@ -33,11 +33,19 @@ public class MainActivity extends AppCompatActivity {
         fabShowAllBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AllBooksActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MyBooksActivity.class);
                 startActivity(intent);
             }
         });
-
+        FloatingActionButton  fabShowMyWishlist = findViewById(R.id.fabShowMyWishlist);
+        fabShowMyWishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MyBooksActivity.class);
+                intent.putExtra("Wishlist", 0);
+                startActivity(intent);
+            }
+        });
 
     }
 

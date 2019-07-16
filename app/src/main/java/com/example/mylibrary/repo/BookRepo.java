@@ -11,12 +11,13 @@ import java.util.List;
 public class BookRepo {
     private BookDAO mBookDAO;
     private LiveData<List<BookModel>> mAllBooks;
-
+    
 
     public BookRepo(Application application) {
         BookRoomDatabase db = BookRoomDatabase.getDatabase(application);
         mBookDAO = db.bookDAO();
         mAllBooks = db.bookDAO().getAllBooks();
+
     }
 
     public LiveData<List<BookModel>> getAllBooks() {

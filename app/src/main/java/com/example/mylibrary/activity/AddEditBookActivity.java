@@ -2,13 +2,12 @@ package com.example.mylibrary.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -20,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -43,7 +41,7 @@ import java.util.List;
 public class AddEditBookActivity extends AppCompatActivity {
 
     private EditText editTextBookTitle, editTextBookAuthor, editTextBorrower;
-    private CheckBox checkBoxIsAlreadyRead, checkBoxIsLent;
+    private CheckBox checkBoxIsAlreadyRead, checkBoxIsLent, checkBoxIsOnWishList;
     private RatingBar ratingBar;
     private Spinner spinnerLanguage;
     private ImageView imageView;
@@ -74,17 +72,19 @@ public class AddEditBookActivity extends AppCompatActivity {
         editBookButton = findViewById(R.id.button_edit_book);
         addEditBookLayout = findViewById(R.id.add_book_layout);
         deleteImageButton = findViewById(R.id.imageButtonDelete);
+        checkBoxIsOnWishList = findViewById(R.id.checkBoxisOnWishList);
 
         Intent intent = getIntent();
 
         if (intent.hasExtra("bookId")) {
-            final int clickedItemId = intent.getIntExtra("clickedItemId", -1);
+            final int bookId = intent.getIntExtra("bookId", -1);
+
 
             BookViewModel bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
             bookViewModel.getAllBooks().observe(this, new Observer<List<BookModel>>() {
                 @Override
                 public void onChanged(@Nullable List<BookModel> booksList) {
-                    currentBook = booksList.get(clickedItemId);
+                    currentBook = booksList.stream().filter(book->book.getBookId()==bookId).findFirst().get();
                     editTextBookTitle.setText(currentBook.getBookTitle());
                     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.languages_array, android.R.layout.simple_spinner_dropdown_item);
                     spinnerLanguage.setAdapter(adapter);
@@ -94,10 +94,14 @@ public class AddEditBookActivity extends AppCompatActivity {
                     checkBoxIsAlreadyRead.setChecked(currentBook.isAlreadyRead());
                     checkBoxIsLent.setChecked(currentBook.isLent());
                     ratingBar.setRating(currentBook.getRating());
+                    setVisibility(checkBoxIsOnWishList);
+
                     if (currentBook.getImageURI() != null) {
                         imageView.setTag(currentBook.getImageURI());
 
-                      Picasso.get().load(Uri.parse(currentBook.getImageURI())).resize(110,120).into(imageView);
+                      Picasso.get().load(Uri.parse(currentBook.getImageURI())).fit().centerCrop().into(imageView);
+
+
                         Picasso.get().setLoggingEnabled(true);
 
                     }
@@ -136,7 +140,7 @@ public class AddEditBookActivity extends AppCompatActivity {
                     deleteImageButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            currentBook.setImageURI(null);
+                            imageView.setTag("");
                             imageView.setImageResource(android.R.color.transparent);
                         }
                     });
@@ -207,6 +211,7 @@ public class AddEditBookActivity extends AppCompatActivity {
         final boolean isAlreadyRead = checkBoxIsAlreadyRead.isChecked();
         final float rating = ratingBar.getRating();
         final boolean isLent = checkBoxIsLent.isChecked();
+        final boolean isOnWishList = checkBoxIsOnWishList.isChecked();
         final Object bookImageURI = imageView.getTag();
 
 
@@ -236,6 +241,7 @@ public class AddEditBookActivity extends AppCompatActivity {
                 newBook.setRating(rating);
                 newBook.setLent(isLent);
                 newBook.setBorrower(borrower);
+                newBook.setOnWishList(isOnWishList);
                 if (bookImageURI != null) {
                     newBook.setImageURI(bookImageURI.toString());
                 }
@@ -286,6 +292,7 @@ public class AddEditBookActivity extends AppCompatActivity {
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
             File imageFile = new File(imageFilePath);
             if (imageFile.exists()) {
+                Picasso.get().load(Uri.fromFile(imageFile)).fit().centerCrop().into(imageView);
                 imageView.setImageURI(Uri.fromFile(imageFile));
                 imageView.setTag(Uri.fromFile(imageFile));
             }
@@ -334,5 +341,6 @@ public class AddEditBookActivity extends AppCompatActivity {
             }
         }
     }
+
 
 }

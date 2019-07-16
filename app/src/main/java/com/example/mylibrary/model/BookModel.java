@@ -22,6 +22,7 @@ public class BookModel {
     private boolean isLent;
     private String borrower;
     private String imageURI;
+    private boolean isOnWishList;
 
 
     public boolean isAlreadyRead() {
@@ -96,5 +97,12 @@ public class BookModel {
         this.imageURI = imageURI;
     }
 
+    public boolean isOnWishList() {
+        return isOnWishList;
+    }
+
+    public void setOnWishList(boolean onWishList) {
+        isOnWishList = onWishList;
+    }
 
 }

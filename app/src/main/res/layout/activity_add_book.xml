@@ -5,6 +5,7 @@
     android:id="@+id/add_book_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="8dp"
 
     >
 
@@ -13,8 +14,8 @@
         android:id="@+id/editTextBookTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/hint_title"
         android:inputType="textPersonName"
@@ -25,11 +26,14 @@
         android:id="@+id/editTextBookAuthor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="@string/hint_author"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/editTextBookTitle"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextBookTitle" />
 
 
@@ -37,10 +41,11 @@
         android:id="@+id/spinnerLanguage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/editTextBookAuthor"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextBookAuthor" />
 
 
@@ -50,16 +55,13 @@
         android:layout_width="59dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="@string/add_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_edit_book"
@@ -67,50 +69,43 @@
         android:layout_width="59dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="@string/edit"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RatingBar
         android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="11dp"
+        android:layout_width="143dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
         android:numStars="3"
         android:scaleX="0.7"
         android:scaleY="0.7"
         app:layout_constraintStart_toEndOf="@+id/checkBoxIsAlreadyRead"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerLanguage" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxisOnWishList" />
 
     <CheckBox
         android:id="@+id/checkBoxIsAlreadyRead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Read already?"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxisOnWishList" />
 
     <CheckBox
         android:id="@+id/checkBoxIsLent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="171dp"
         android:text="Lent?"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxIsAlreadyRead" />
 
@@ -118,24 +113,22 @@
         android:id="@+id/editTextBorrower"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Borrower's name"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxIsLent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxIsLent" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="108dp"
         android:layout_height="120dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/editTextBookAuthor"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_report_image" />
 
@@ -143,10 +136,13 @@
         android:id="@+id/imageButtonAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="9dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:onClick="addImage"
         android:tint="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.804"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonDelete"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/fab_add" />
 
@@ -154,17 +150,24 @@
         android:id="@+id/imageButtonDelete"
         android:layout_width="50dp"
         android:layout_height="44dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="68dp"
-        android:layout_marginBottom="400dp"
-        android:visibility="invisible"
+        android:layout_marginStart="204dp"
+        android:layout_marginTop="8dp"
         android:tint="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_button_delete" />
+
+    <CheckBox
+        android:id="@+id/checkBoxisOnWishList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Wishlist?"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerLanguage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,25 +3,28 @@ package com.example.mylibrary.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.mylibrary.model.BookModel;
 import com.example.mylibrary.viewmodel.BookViewModel;
 import com.example.mylibrary.adapter.BooksAdapter;
 import com.example.mylibrary.R;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class AllBooksActivity extends AppCompatActivity {
+public class MyBooksActivity extends AppCompatActivity {
     public static final int EDIT_BOOK_REQUEST = 1;
 
     private BookViewModel bookViewModel;
     private BooksAdapter adapter;
-
+    private Intent intent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,14 +41,26 @@ public class AllBooksActivity extends AppCompatActivity {
         registerForContextMenu(recyclerView);
 
         bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
+        intent = getIntent();
         bookViewModel.getAllBooks().observe(this, new Observer<List<BookModel>>() {
-            @Override
-            public void onChanged(List<BookModel> booksList) {
-                adapter.setBooksList(booksList);
-                adapter.notifyDataSetChanged();
+                @Override
+                public void onChanged(List<BookModel> booksList) {
+                    if (intent.hasExtra("Wishlist")) {
+                       List<BookModel> wishlist =  booksList.stream()
+                                .filter(book-> book.isOnWishList()==true)
+                                .collect(Collectors.<BookModel>toList());
+                        adapter.setBooksList(wishlist);
+                    }
+                    else {
+                        List<BookModel> myBooks =  booksList.stream()
+                                .filter(book-> book.isOnWishList()==false)
+                                .collect(Collectors.<BookModel>toList());
 
-            }
-        });
+                        adapter.setBooksList(myBooks);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            });
 
     }
 
@@ -54,11 +69,9 @@ public class AllBooksActivity extends AppCompatActivity {
         int clickedItemId = item.getOrder();
         int bookId = adapter.getBookAt(clickedItemId).getBookId();
 
-
         switch (item.getItemId()) {
             case (R.id.detailsBook):
-                Intent intent = new Intent(AllBooksActivity.this, AddEditBookActivity.class);
-                intent.putExtra("clickedItemId", clickedItemId);
+                Intent intent = new Intent(MyBooksActivity.this, AddEditBookActivity.class);
                 intent.putExtra("bookId", bookId);
                 startActivityForResult(intent, EDIT_BOOK_REQUEST);
                 break;
@@ -81,8 +94,8 @@ public class AllBooksActivity extends AppCompatActivity {
             updatedBook.setBookLanguage(data.getStringExtra("updatedLanguage"));
             updatedBook.setBookAuthor(data.getStringExtra("updatedAuthor"));
             updatedBook.setBorrower(data.getStringExtra("updatedBorrower"));
-            updatedBook.setAlreadyRead( data.getBooleanExtra("updatedIsAlreadyRead",false));
-            updatedBook.setLent(data.getBooleanExtra("updatedIsLent",false));
+            updatedBook.setAlreadyRead(data.getBooleanExtra("updatedIsAlreadyRead", false));
+            updatedBook.setLent(data.getBooleanExtra("updatedIsLent", false));
             updatedBook.setRating(data.getFloatExtra("updatedRating", 0));
             updatedBook.setImageURI(data.getStringExtra("updatedImageURI"));
             bookViewModel.update(updatedBook);

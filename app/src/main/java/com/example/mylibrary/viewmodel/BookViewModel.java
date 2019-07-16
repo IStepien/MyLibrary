@@ -12,7 +12,7 @@ import java.util.List;
 public class BookViewModel extends AndroidViewModel {
     private BookRepo mRepo;
     private LiveData<List<BookModel>> mAllBooks;
-
+    private LiveData<List<BookModel>> mWishList;
 
     public BookViewModel(@NonNull Application application) {
         super(application);
