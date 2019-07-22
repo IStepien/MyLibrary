@@ -1,9 +1,6 @@
 package com.example.mylibrary.model;
 
-import android.graphics.Bitmap;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -97,7 +94,7 @@ public class BookModel {
         this.imageURI = imageURI;
     }
 
-    public boolean isOnWishList() {
+    public boolean getIsOnWishList() {
         return isOnWishList;
     }
 

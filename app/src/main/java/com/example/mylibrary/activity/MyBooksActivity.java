@@ -2,6 +2,7 @@ package com.example.mylibrary.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
@@ -47,17 +48,18 @@ public class MyBooksActivity extends AppCompatActivity {
                 public void onChanged(List<BookModel> booksList) {
                     if (intent.hasExtra("Wishlist")) {
                        List<BookModel> wishlist =  booksList.stream()
-                                .filter(book-> book.isOnWishList()==true)
+                                .filter(book-> book.getIsOnWishList()==true)
                                 .collect(Collectors.<BookModel>toList());
                         adapter.setBooksList(wishlist);
                     }
                     else {
                         List<BookModel> myBooks =  booksList.stream()
-                                .filter(book-> book.isOnWishList()==false)
+                                .filter(book-> book.getIsOnWishList()==false)
                                 .collect(Collectors.<BookModel>toList());
 
                         adapter.setBooksList(myBooks);
                         adapter.notifyDataSetChanged();
+
                     }
                 }
             });
@@ -98,6 +100,7 @@ public class MyBooksActivity extends AppCompatActivity {
             updatedBook.setLent(data.getBooleanExtra("updatedIsLent", false));
             updatedBook.setRating(data.getFloatExtra("updatedRating", 0));
             updatedBook.setImageURI(data.getStringExtra("updatedImageURI"));
+            updatedBook.setOnWishList(data.getBooleanExtra("updatedIsOnWishList", false));
             bookViewModel.update(updatedBook);
         }
 

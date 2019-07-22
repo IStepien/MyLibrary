@@ -60,7 +60,8 @@
         app:menu_shadowRadius="0dp"
         app:menu_shadowXOffset="1dp"
         app:menu_shadowYOffset="4dp"
-        app:menu_showShadow="true">
+        app:menu_showShadow="true"
+         >
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fabAddNewBook"

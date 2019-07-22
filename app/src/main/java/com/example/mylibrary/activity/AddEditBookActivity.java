@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -19,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -84,7 +84,10 @@ public class AddEditBookActivity extends AppCompatActivity {
             bookViewModel.getAllBooks().observe(this, new Observer<List<BookModel>>() {
                 @Override
                 public void onChanged(@Nullable List<BookModel> booksList) {
-                    currentBook = booksList.stream().filter(book->book.getBookId()==bookId).findFirst().get();
+                    currentBook = booksList.stream()
+                            .filter(book -> book.getBookId() == bookId)
+                            .findFirst()
+                            .get();
                     editTextBookTitle.setText(currentBook.getBookTitle());
                     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.languages_array, android.R.layout.simple_spinner_dropdown_item);
                     spinnerLanguage.setAdapter(adapter);
@@ -94,16 +97,13 @@ public class AddEditBookActivity extends AppCompatActivity {
                     checkBoxIsAlreadyRead.setChecked(currentBook.isAlreadyRead());
                     checkBoxIsLent.setChecked(currentBook.isLent());
                     ratingBar.setRating(currentBook.getRating());
+                    checkBoxIsOnWishList.setChecked(currentBook.getIsOnWishList());
                     setVisibility(checkBoxIsOnWishList);
 
                     if (currentBook.getImageURI() != null) {
                         imageView.setTag(currentBook.getImageURI());
-
-                      Picasso.get().load(Uri.parse(currentBook.getImageURI())).fit().centerCrop().into(imageView);
-
-
+                        Picasso.get().load(Uri.parse(currentBook.getImageURI())).fit().centerCrop().into(imageView);
                         Picasso.get().setLoggingEnabled(true);
-
                     }
                     if (!currentBook.isLent()) {
                         setVisibility(editTextBorrower);
@@ -137,6 +137,7 @@ public class AddEditBookActivity extends AppCompatActivity {
                             editBookButton.setVisibility(View.INVISIBLE);
                         }
                     });
+
                     deleteImageButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -151,7 +152,6 @@ public class AddEditBookActivity extends AppCompatActivity {
 
                             Intent intent = getIntent();
                             Integer bookId = intent.getIntExtra("bookId", -1);
-
                             Intent resultIntent = new Intent();
                             resultIntent.putExtra("bookId", bookId);
                             resultIntent.putExtra("updatedTitle", editTextBookTitle.getText().toString());
@@ -161,7 +161,11 @@ public class AddEditBookActivity extends AppCompatActivity {
                             resultIntent.putExtra("updatedIsAlreadyRead", checkBoxIsAlreadyRead.isChecked());
                             resultIntent.putExtra("updatedIsLent", checkBoxIsLent.isChecked());
                             resultIntent.putExtra("updatedRating", ratingBar.getRating());
-                            resultIntent.putExtra("updatedImageURI", imageView.getTag().toString());
+                            resultIntent.putExtra("updatedIsOnWishList", checkBoxIsOnWishList.isChecked());
+
+                            if (imageView.getTag() != null) {
+                                resultIntent.putExtra("updatedImageURI", imageView.getTag().toString());
+                            }
                             setResult(RESULT_OK, resultIntent);
                             finish();
 

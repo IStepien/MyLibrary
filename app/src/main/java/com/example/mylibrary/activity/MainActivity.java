@@ -2,6 +2,7 @@ package com.example.mylibrary.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MyBooksActivity.class);
                 intent.putExtra("Wishlist", 0);
                 startActivity(intent);
+                Log.i("mainActivity", "fab Wishlist clicked");
             }
         });
 
