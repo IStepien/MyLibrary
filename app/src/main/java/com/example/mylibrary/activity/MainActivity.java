@@ -22,31 +22,22 @@ public class MainActivity extends AppCompatActivity {
 
 
         FloatingActionButton  fabAddNewBook = findViewById(R.id.fabAddNewBook);
-        fabAddNewBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AddEditBookActivity.class);
-                startActivity(intent);
-            }
+        fabAddNewBook.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), AddEditBookActivity.class);
+            startActivity(intent);
         });
 
         FloatingActionButton  fabShowAllBooks = findViewById(R.id.fabShowAllBooks);
-        fabShowAllBooks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MyBooksActivity.class);
-                startActivity(intent);
-            }
+        fabShowAllBooks.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), MyBooksActivity.class);
+            startActivity(intent);
         });
         FloatingActionButton  fabShowMyWishlist = findViewById(R.id.fabShowMyWishlist);
-        fabShowMyWishlist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MyBooksActivity.class);
-                intent.putExtra("Wishlist", 0);
-                startActivity(intent);
-                Log.i("mainActivity", "fab Wishlist clicked");
-            }
+        fabShowMyWishlist.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), MyBooksActivity.class);
+            intent.putExtra("Wishlist", 0);
+            startActivity(intent);
+            Log.i("mainActivity", "fab Wishlist clicked");
         });
 
     }

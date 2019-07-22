@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MyBooksActivity extends AppCompatActivity {
-    public static final int EDIT_BOOK_REQUEST = 1;
+    private static final int EDIT_BOOK_REQUEST = 1;
 
     private BookViewModel bookViewModel;
     private BooksAdapter adapter;
@@ -43,26 +43,23 @@ public class MyBooksActivity extends AppCompatActivity {
 
         bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
         intent = getIntent();
-        bookViewModel.getAllBooks().observe(this, new Observer<List<BookModel>>() {
-                @Override
-                public void onChanged(List<BookModel> booksList) {
-                    if (intent.hasExtra("Wishlist")) {
-                       List<BookModel> wishlist =  booksList.stream()
-                                .filter(book-> book.getIsOnWishList()==true)
-                                .collect(Collectors.<BookModel>toList());
-                        adapter.setBooksList(wishlist);
-                    }
-                    else {
-                        List<BookModel> myBooks =  booksList.stream()
-                                .filter(book-> book.getIsOnWishList()==false)
-                                .collect(Collectors.<BookModel>toList());
+        bookViewModel.getAllBooks().observe(this, booksList -> {
+            if (intent.hasExtra("Wishlist")) {
+               List<BookModel> wishlist =  booksList.stream()
+                        .filter(book-> book.getIsOnWishList())
+                        .collect(Collectors.<BookModel>toList());
+                adapter.setBooksList(wishlist);
+            }
+            else {
+                List<BookModel> myBooks =  booksList.stream()
+                        .filter(book-> !book.getIsOnWishList())
+                        .collect(Collectors.<BookModel>toList());
 
-                        adapter.setBooksList(myBooks);
-                        adapter.notifyDataSetChanged();
+                adapter.setBooksList(myBooks);
+                adapter.notifyDataSetChanged();
 
-                    }
-                }
-            });
+            }
+        });
 
     }
 

@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
@@ -38,20 +37,29 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class AddEditBookActivity extends AppCompatActivity {
 
-    private EditText editTextBookTitle, editTextBookAuthor, editTextBorrower;
-    private CheckBox checkBoxIsAlreadyRead, checkBoxIsLent, checkBoxIsOnWishList;
-    private RatingBar ratingBar;
-    private Spinner spinnerLanguage;
-    private ImageView imageView;
+    @BindView(R.id.editTextBookTitle) EditText editTextBookTitle;
+    @BindView(R.id.editTextBookAuthor) EditText editTextBookAuthor;
+    @BindView(R.id.editTextBorrower) EditText editTextBorrower;
+    @BindView(R.id.spinnerLanguage) Spinner spinnerLanguage;
+    @BindView(R.id.checkBoxIsAlreadyRead) CheckBox checkBoxIsAlreadyRead;
+    @BindView(R.id.checkBoxIsLent) CheckBox checkBoxIsLent;
+    @BindView(R.id.checkBoxisOnWishList) CheckBox checkBoxIsOnWishList;
+    @BindView(R.id.ratingBar) RatingBar ratingBar;
+    @BindView(R.id.imageView) ImageView imageView;
+    @BindView(R.id.button_add_book) Button addBookButton;
+    @BindView(R.id.button_edit_book) Button editBookButton;
+    @BindView(R.id.imageButtonDelete) ImageView deleteImageButton;
+    @BindView(R.id.add_book_layout) ConstraintLayout addEditBookLayout;
+
+
     private BookModel newBook;
-    static final int REQUEST_TAKE_PHOTO = 1;
+    private static final int REQUEST_TAKE_PHOTO = 1;
     private String imageFilePath;
-    private Button editBookButton, addBookButton;
-    private ConstraintLayout addEditBookLayout;
-    private BookModel currentBook;
-    private ImageButton deleteImageButton;
 
 
     @Override
@@ -59,20 +67,7 @@ public class AddEditBookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_book);
 
-
-        editTextBookTitle = findViewById(R.id.editTextBookTitle);
-        spinnerLanguage = findViewById(R.id.spinnerLanguage);
-        editTextBookAuthor = findViewById(R.id.editTextBookAuthor);
-        editTextBorrower = findViewById(R.id.editTextBorrower);
-        checkBoxIsAlreadyRead = findViewById(R.id.checkBoxIsAlreadyRead);
-        checkBoxIsLent = findViewById(R.id.checkBoxIsLent);
-        ratingBar = findViewById(R.id.ratingBar);
-        imageView = findViewById(R.id.imageView);
-        addBookButton = findViewById(R.id.button_add_book);
-        editBookButton = findViewById(R.id.button_edit_book);
-        addEditBookLayout = findViewById(R.id.add_book_layout);
-        deleteImageButton = findViewById(R.id.imageButtonDelete);
-        checkBoxIsOnWishList = findViewById(R.id.checkBoxisOnWishList);
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
 
@@ -81,99 +76,77 @@ public class AddEditBookActivity extends AppCompatActivity {
 
 
             BookViewModel bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
-            bookViewModel.getAllBooks().observe(this, new Observer<List<BookModel>>() {
-                @Override
-                public void onChanged(@Nullable List<BookModel> booksList) {
-                    currentBook = booksList.stream()
-                            .filter(book -> book.getBookId() == bookId)
-                            .findFirst()
-                            .get();
-                    editTextBookTitle.setText(currentBook.getBookTitle());
-                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.languages_array, android.R.layout.simple_spinner_dropdown_item);
-                    spinnerLanguage.setAdapter(adapter);
-                    spinnerLanguage.setSelection(adapter.getPosition(currentBook.getBookLanguage()));
-                    editTextBookAuthor.setText(currentBook.getBookAuthor());
-                    editTextBorrower.setText(currentBook.getBorrower());
-                    checkBoxIsAlreadyRead.setChecked(currentBook.isAlreadyRead());
-                    checkBoxIsLent.setChecked(currentBook.isLent());
-                    ratingBar.setRating(currentBook.getRating());
-                    checkBoxIsOnWishList.setChecked(currentBook.getIsOnWishList());
-                    setVisibility(checkBoxIsOnWishList);
+            bookViewModel.getAllBooks().observe(this, booksList -> {
+                BookModel currentBook = booksList.stream()
+                        .filter(book -> book.getBookId() == bookId)
+                        .findFirst()
+                        .get();
+                editTextBookTitle.setText(currentBook.getBookTitle());
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.languages_array, android.R.layout.simple_spinner_dropdown_item);
+                spinnerLanguage.setAdapter(adapter);
+                spinnerLanguage.setSelection(adapter.getPosition(currentBook.getBookLanguage()));
+                editTextBookAuthor.setText(currentBook.getBookAuthor());
+                editTextBorrower.setText(currentBook.getBorrower());
+                checkBoxIsAlreadyRead.setChecked(currentBook.isAlreadyRead());
+                checkBoxIsLent.setChecked(currentBook.isLent());
+                ratingBar.setRating(currentBook.getRating());
+                checkBoxIsOnWishList.setChecked(currentBook.getIsOnWishList());
+                setVisibility(checkBoxIsOnWishList);
 
-                    if (currentBook.getImageURI() != null) {
-                        imageView.setTag(currentBook.getImageURI());
-                        Picasso.get().load(Uri.parse(currentBook.getImageURI())).fit().centerCrop().into(imageView);
-                        Picasso.get().setLoggingEnabled(true);
-                    }
-                    if (!currentBook.isLent()) {
-                        setVisibility(editTextBorrower);
-                    }
-                    if (!currentBook.isAlreadyRead()) {
-                        setVisibility(ratingBar);
-                    }
-
-                    checkBoxIsAlreadyRead.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            setVisibility(ratingBar);
-                        }
-                    });
-                    checkBoxIsLent.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            setVisibility(editTextBorrower);
-                        }
-                    });
-
-                    freezeLayout(addEditBookLayout);
-
-                    setVisibility(editBookButton);
-                    setVisibility(deleteImageButton);
-
-                    editBookButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            unFreezeLayout(addEditBookLayout);
-                            editBookButton.setVisibility(View.INVISIBLE);
-                        }
-                    });
-
-                    deleteImageButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            imageView.setTag("");
-                            imageView.setImageResource(android.R.color.transparent);
-                        }
-                    });
-
-                    addBookButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            Intent intent = getIntent();
-                            Integer bookId = intent.getIntExtra("bookId", -1);
-                            Intent resultIntent = new Intent();
-                            resultIntent.putExtra("bookId", bookId);
-                            resultIntent.putExtra("updatedTitle", editTextBookTitle.getText().toString());
-                            resultIntent.putExtra("updatedLanguage", spinnerLanguage.getSelectedItem().toString());
-                            resultIntent.putExtra("updatedAuthor", editTextBookAuthor.getText().toString());
-                            resultIntent.putExtra("updatedBorrower", editTextBorrower.getText().toString());
-                            resultIntent.putExtra("updatedIsAlreadyRead", checkBoxIsAlreadyRead.isChecked());
-                            resultIntent.putExtra("updatedIsLent", checkBoxIsLent.isChecked());
-                            resultIntent.putExtra("updatedRating", ratingBar.getRating());
-                            resultIntent.putExtra("updatedIsOnWishList", checkBoxIsOnWishList.isChecked());
-
-                            if (imageView.getTag() != null) {
-                                resultIntent.putExtra("updatedImageURI", imageView.getTag().toString());
-                            }
-                            setResult(RESULT_OK, resultIntent);
-                            finish();
-
-                        }
-                    });
-
-
+                if (currentBook.getImageURI() != null) {
+                    imageView.setTag(currentBook.getImageURI());
+                    Picasso.get().load(Uri.parse(currentBook.getImageURI())).fit().centerCrop().into(imageView);
+                    Picasso.get().setLoggingEnabled(true);
                 }
+                if (!currentBook.isLent()) {
+                    setVisibility(editTextBorrower);
+                }
+                if (!currentBook.isAlreadyRead()) {
+                    setVisibility(ratingBar);
+                }
+
+                checkBoxIsAlreadyRead.setOnClickListener(v -> setVisibility(ratingBar));
+                checkBoxIsLent.setOnClickListener(v -> setVisibility(editTextBorrower));
+
+                freezeLayout(addEditBookLayout);
+
+                setVisibility(editBookButton);
+                setVisibility(deleteImageButton);
+
+                editBookButton.setOnClickListener(v -> {
+                    unFreezeLayout(addEditBookLayout);
+                    editBookButton.setVisibility(View.INVISIBLE);
+                });
+
+                deleteImageButton.setOnClickListener(v -> {
+                    imageView.setTag("");
+                    imageView.setImageResource(android.R.color.transparent);
+                });
+
+                addBookButton.setOnClickListener(v -> {
+
+                    Intent intent1 = getIntent();
+                    Integer bookId1 = intent1.getIntExtra("bookId", -1);
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("bookId", bookId1);
+                    resultIntent.putExtra("updatedTitle", editTextBookTitle.getText().toString());
+                    resultIntent.putExtra("updatedLanguage", spinnerLanguage.getSelectedItem().toString());
+                    resultIntent.putExtra("updatedAuthor", editTextBookAuthor.getText().toString());
+                    resultIntent.putExtra("updatedBorrower", editTextBorrower.getText().toString());
+                    resultIntent.putExtra("updatedIsAlreadyRead", checkBoxIsAlreadyRead.isChecked());
+                    resultIntent.putExtra("updatedIsLent", checkBoxIsLent.isChecked());
+                    resultIntent.putExtra("updatedRating", ratingBar.getRating());
+                    resultIntent.putExtra("updatedIsOnWishList", checkBoxIsOnWishList.isChecked());
+
+                    if (imageView.getTag() != null) {
+                        resultIntent.putExtra("updatedImageURI", imageView.getTag().toString());
+                    }
+                    setResult(RESULT_OK, resultIntent);
+                    finish();
+
+                });
+
+
             });
 
 
@@ -182,31 +155,16 @@ public class AddEditBookActivity extends AppCompatActivity {
             setVisibility(ratingBar);
             setVisibility(editTextBorrower);
 
-            checkBoxIsAlreadyRead.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setVisibility(ratingBar);
-                }
-            });
-            checkBoxIsLent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setVisibility(editTextBorrower);
-                }
-            });
+            checkBoxIsAlreadyRead.setOnClickListener(v -> setVisibility(ratingBar));
+            checkBoxIsLent.setOnClickListener(v -> setVisibility(editTextBorrower));
 
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.languages_array, android.R.layout.simple_spinner_dropdown_item);
             spinnerLanguage.setAdapter(adapter);
-            addBookButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    saveBook();
-                }
-            });
+            addBookButton.setOnClickListener(v -> saveBook());
         }
     }
 
-    protected void saveBook() {
+    private void saveBook() {
 
         final String bookTitle = editTextBookTitle.getText().toString().trim();
         final String bookAuthor = editTextBookAuthor.getText().toString().trim();
@@ -320,7 +278,7 @@ public class AddEditBookActivity extends AppCompatActivity {
     }
 
 
-    public static void setVisibility(View view) {
+    private static void setVisibility(View view) {
         if (view.getVisibility() == View.VISIBLE) {
             view.setVisibility(View.INVISIBLE);
         } else {
@@ -328,7 +286,7 @@ public class AddEditBookActivity extends AppCompatActivity {
         }
     }
 
-    public void freezeLayout(ViewGroup layout) {
+    private void freezeLayout(ViewGroup layout) {
         for (int i = 0; i < layout.getChildCount(); i++) {
             if (i != layout.indexOfChild(editBookButton)) {
                 View view = layout.getChildAt(i);
@@ -337,7 +295,7 @@ public class AddEditBookActivity extends AppCompatActivity {
         }
     }
 
-    public void unFreezeLayout(ViewGroup layout) {
+    private void unFreezeLayout(ViewGroup layout) {
         for (int i = 0; i < layout.getChildCount(); i++) {
             if (i != layout.indexOfChild(editBookButton)) {
                 View view = layout.getChildAt(i);
