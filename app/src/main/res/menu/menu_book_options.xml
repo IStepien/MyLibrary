@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/detailsBook"
-        android:title="details"></item>
+        android:title="szczegoly"></item>
 
     <item
         android:id="@+id/deleteBook"
-        android:title="delete"></item>
+        android:title="usun"></item>
 
 </menu>

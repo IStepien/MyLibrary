@@ -63,9 +63,9 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BooksViewHol
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            menu.setHeaderTitle("choose option");
-            menu.add(0, R.id.detailsBook, getAdapterPosition(), "details");
-            menu.add(0, R.id.deleteBook, getAdapterPosition(), "delete");
+            menu.setHeaderTitle(R.string.contextMenuHeaderTitle);
+            menu.add(0, R.id.detailsBook, getAdapterPosition(), R.string.details);
+            menu.add(0, R.id.deleteBook, getAdapterPosition(), R.string.delete);
         }
     }
 

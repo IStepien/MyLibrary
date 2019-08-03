@@ -18,5 +18,15 @@
         <item>EN</item>
         <item>other</item>
     </string-array>
-    <string name="chooser_title">Make a photo with</string>
+    <string name="chooser_title">Take a photo with</string>
+    <string name="read_already">Read already?</string>
+    <string name="lent">Lent?</string>
+    <string name="borrower_s_name">Borrower\'s name</string>
+    <string name="wishlist">Wishlist?</string>
+    <string name="show_my_books">show my books</string>
+    <string name="add_new_book">add new book</string>
+    <string name="show_my_wishlist">show my wishlist</string>
+    <string name="details">details</string>
+    <string name="delete">usun</string>
+    <string name="contextMenuHeaderTitle">choose option</string>
 </resources>

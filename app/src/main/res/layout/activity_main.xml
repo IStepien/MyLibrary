@@ -70,7 +70,7 @@
             app:fab_colorNormal="#00600f"
             app:fab_colorPressed="#4c8c4a"
             app:fab_colorRipple="#6abf69"
-            app:fab_label="add new book"
+            app:fab_label="@string/add_new_book"
             app:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
@@ -80,7 +80,7 @@
             app:fab_colorNormal="#00600f"
             app:fab_colorPressed="#4c8c4a"
             app:fab_colorRipple="#6abf69"
-            app:fab_label="show my books"
+            app:fab_label="@string/show_my_books"
 
             app:fab_size="mini" />
 
@@ -92,7 +92,7 @@
             app:fab_colorNormal="#00600f"
             app:fab_colorPressed="#4c8c4a"
             app:fab_colorRipple="#6abf69"
-            app:fab_label="show my wishlist"
+            app:fab_label="@string/show_my_wishlist"
             app:fab_size="mini" />
     </com.github.clans.fab.FloatingActionMenu>
 

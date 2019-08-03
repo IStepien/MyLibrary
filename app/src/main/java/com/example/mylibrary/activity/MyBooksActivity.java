@@ -1,13 +1,13 @@
 package com.example.mylibrary.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +18,7 @@ import com.example.mylibrary.adapter.BooksAdapter;
 import com.example.mylibrary.R;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class MyBooksActivity extends AppCompatActivity {
@@ -30,6 +31,8 @@ public class MyBooksActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.recyclerview_books);
 
 
@@ -39,6 +42,7 @@ public class MyBooksActivity extends AppCompatActivity {
 
         adapter = new BooksAdapter();
         recyclerView.setAdapter(adapter);
+
         registerForContextMenu(recyclerView);
 
         bookViewModel = ViewModelProviders.of(this).get(BookViewModel.class);
@@ -102,4 +106,5 @@ public class MyBooksActivity extends AppCompatActivity {
         }
 
     }
+
 }

@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Mój księgozbiór</string>
+    <string name="action_settings">Ustawiania</string>
+    <string name="welcomeMessage">To jest ekran powitalny. Kliknij plus by dodać książkę</string>
+    <string name="hint_title">Tytuł</string>
+    <string name="hint_author">Autor</string>
+    <string name="hint_language">Language</string>
+    <string name="add_button">Dodaj</string>
+    <string name="add_book_heading">Dodaj nową książkę</string>
+    <string name="cancel">Anuluj</string>
+    <string name="edit">Edytuj</string>
+    <string-array name="languages_array">
+        <item>Wybierz język</item>
+        <item>PL</item>
+        <item>DE</item>
+        <item>SE</item>
+        <item>FI</item>
+        <item>EN</item>
+        <item>inny</item>
+    </string-array>
+    <string name="chooser_title">Zrób zdjęcie za pomocą</string>
+    <string name="read_already">Przeczytana?</string>
+    <string name="lent">Pożyczona komuś?</string>
+    <string name="borrower_s_name">kto pożyczył</string>
+    <string name="wishlist">Lista życzeń?</string>
+    <string name="show_my_books">moje książki</string>
+    <string name="add_new_book">dodaj książkę</string>
+    <string name="show_my_wishlist">moja lista życzeń</string>
+    <string name="details">szczegóły</string>
+    <string name="delete">usuń</string>
+    <string name="contextMenuHeaderTitle">wybierz</string>
+</resources>
