@@ -91,7 +91,6 @@ public class AddEditBookActivity extends AppCompatActivity {
                 checkBoxIsLent.setChecked(currentBook.isLent());
                 ratingBar.setRating(currentBook.getRating());
                 checkBoxIsOnWishList.setChecked(currentBook.getIsOnWishList());
-                setVisibility(checkBoxIsOnWishList);
 
                 if (currentBook.getImageURI() != null) {
                     imageView.setTag(currentBook.getImageURI());
