@@ -177,12 +177,12 @@ public class AddEditBookActivity extends AppCompatActivity {
 
 
         if (bookTitle.isEmpty()) {
-            editTextBookTitle.setError("Field required");
+            editTextBookTitle.setError(getText(R.string.field_required));
             editTextBookTitle.requestFocus();
             return;
         }
         if (bookAuthor.isEmpty()) {
-            editTextBookAuthor.setError("Field required");
+            editTextBookTitle.setError(getText(R.string.field_required));
             editTextBookAuthor.requestFocus();
             return;
         }
@@ -219,7 +219,7 @@ public class AddEditBookActivity extends AppCompatActivity {
                 super.onPostExecute(aVoid);
                 finish();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                Toast.makeText(getApplicationContext(), "Book added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.book_added, Toast.LENGTH_SHORT).show();
             }
         }
         SaveBook saveBook = new SaveBook();

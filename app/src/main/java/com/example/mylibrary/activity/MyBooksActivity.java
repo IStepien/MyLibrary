@@ -1,5 +1,6 @@
 package com.example.mylibrary.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -79,7 +81,12 @@ public class MyBooksActivity extends AppCompatActivity {
                 startActivityForResult(intent, EDIT_BOOK_REQUEST);
                 break;
             case (R.id.deleteBook):
-                bookViewModel.delete(adapter.getBookAt(clickedItemId));
+                new AlertDialog.Builder(this)
+                        .setMessage(R.string.dialog_delete_message)
+                        .setNegativeButton(R.string.dialog_delete_no, null)
+                        .setPositiveButton(R.string.dialog_delete_yes, (dialog1, which) -> bookViewModel.delete(adapter.getBookAt(clickedItemId)))
+                        .show();
+
                 break;
         }
         return true;

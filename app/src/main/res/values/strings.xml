@@ -1,14 +1,17 @@
 <resources>
     <string name="app_name">My Library</string>
     <string name="action_settings">Settings</string>
+    <!--Main Activity screen-->
     <string name="welcomeMessage">This is a welcome screen of My Library Application. Click plus button to add a book</string>
+    <!--Floating menu-->
+    <string name="show_my_books">show my books</string>
+    <string name="add_new_book">add new book</string>
+    <string name="show_my_wishlist">show my wishlist</string>
+    <!--AddEditBook Activity screen-->
     <string name="hint_title">Title</string>
     <string name="hint_author">Author</string>
-    <string name="hint_language">Language</string>
     <string name="add_button">Add</string>
-    <string name="add_book_heading">Add a new book</string>
-    <string name="cancel">Cancel</string>
-    <string name="edit">Edit</string>
+    <string name="edit_button">Edit</string>
     <string-array name="languages_array">
         <item>Select language</item>
         <item>PL</item>
@@ -18,15 +21,19 @@
         <item>EN</item>
         <item>other</item>
     </string-array>
-    <string name="chooser_title">Take a photo with</string>
+    <string name="wishlist">Wishlist?</string>
     <string name="read_already">Read already?</string>
     <string name="lent">Lent?</string>
     <string name="borrower_s_name">Borrower\'s name</string>
-    <string name="wishlist">Wishlist?</string>
-    <string name="show_my_books">show my books</string>
-    <string name="add_new_book">add new book</string>
-    <string name="show_my_wishlist">show my wishlist</string>
-    <string name="details">details</string>
-    <string name="delete">usun</string>
+    <string name="chooser_title">Take a photo with</string>
+    <string name="field_required">Field required</string>
+    <string name="book_added">Book added</string>
+    <!--RecyclerView contextMenu-->
     <string name="contextMenuHeaderTitle">choose option</string>
+    <string name="details">details</string>
+    <string name="delete">usuń</string>
+    <!--MyBooksActivity-->
+    <string name="dialog_delete_message">Are you sure?</string>
+    <string name="dialog_delete_yes">yes</string>
+    <string name="dialog_delete_no">no</string>
 </resources>
