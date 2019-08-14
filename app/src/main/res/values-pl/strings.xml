@@ -29,12 +29,13 @@
     <string name="book_added">Dodano</string>
     <!--RecyclerView contextMenu-->
     <string name="chooser_title">Zrób zdjęcie za pomocą</string>
-    <string name="contextMenuHeaderTitle">wybierz</string>
+    <string name="contextMenuHeaderTitle">opcje</string>
     <string name="details">szczegóły</string>
     <string name="delete">usuń</string>
     <!--MyBooksActivity-->
     <string name="dialog_delete_message">Na pewno chcesz usunąć?</string>
     <string name="dialog_delete_yes">tak</string>
     <string name="dialog_delete_no">nie</string>
-
+    <string name="search_title">szukaj</string>
+    <string name="search_hint">szukaj</string>
 </resources>

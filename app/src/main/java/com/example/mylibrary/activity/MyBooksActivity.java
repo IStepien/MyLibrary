@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
@@ -20,7 +22,6 @@ import com.example.mylibrary.adapter.BooksAdapter;
 import com.example.mylibrary.R;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class MyBooksActivity extends AppCompatActivity {
@@ -69,6 +70,13 @@ public class MyBooksActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+
+        return true;
+    }
 
     public boolean onContextItemSelected(MenuItem item) {
         int clickedItemId = item.getOrder();

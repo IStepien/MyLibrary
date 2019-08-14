@@ -2,6 +2,8 @@ package com.example.mylibrary;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
@@ -16,6 +18,7 @@ public abstract class BookRoomDatabase extends RoomDatabase {
 
     private static volatile BookRoomDatabase DATABASE_INSTANCE;
 
+
     public static BookRoomDatabase getDatabase(final Context context) {
         if (DATABASE_INSTANCE == null) {
             synchronized (BookRoomDatabase.class) {
@@ -29,9 +32,11 @@ public abstract class BookRoomDatabase extends RoomDatabase {
             }
         }
         return DATABASE_INSTANCE;
+
     }
     public BookRoomDatabase getDatabaseInstance(){
         return DATABASE_INSTANCE;
+
     }
 
     private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
@@ -39,6 +44,7 @@ public abstract class BookRoomDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             new PopulateDBAsyncTask(DATABASE_INSTANCE).execute();
+
         }
 
     };

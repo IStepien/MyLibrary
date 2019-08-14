@@ -28,7 +28,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MyBooksActivity" />
+        <activity android:name=".activity.MyBooksActivity"/>
+        <meta-data android:name="android.app.searchable"
+            android:resource="@xml/searchable" />
         <activity android:name=".activity.AddEditBookActivity" />
 
         <provider
